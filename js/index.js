@@ -338,26 +338,377 @@
 // const s = new Shape();
 // const c = new Circle(1, 'red');
 
-//5. method overriding
-function extend(Child, Parent) {
-    Child.prototype = Object.create(Parent.prototype);
-    Child.prototype.constructor = Child;
-}
+// //5. method overriding
+// function extend(Child, Parent) {
+//     Child.prototype = Object.create(Parent.prototype);
+//     Child.prototype.constructor = Child;
+// }
 
-function Shape() {
-}
+// function Shape() {
+// }
 
-Shape.prototype.duplicate = function() {
-    console.log('duplicate');
-}
+// Shape.prototype.duplicate = function() {
+//     console.log('duplicate');
+// }
 
-function Circle() {
-}
+// function Circle() {
+// }
 
 
-extend(Circle, Shape); //dapat mereset object
+// extend(Circle, Shape); //dapat mereset object
 
-Circle.prototype.duplicate = function() {
-    Shape.prototype.duplicate.call(this);
-}
-const c = new Circle();
+// Circle.prototype.duplicate = function() {
+//     Shape.prototype.duplicate.call(this);
+// }
+// const c = new Circle();
+
+// 6. pholymophisem (eror)
+
+
+// function extend(Child, Parent) {
+//     Child.prototype = Object.create(Parent.prototype);
+//     Child.prototype.constructor = Child;
+// }
+
+
+// function Shape() {
+// }
+
+// Shape.prototype.duplicate = function() {
+//     console.log('duplicate');
+// }
+
+// function Circle() {
+// }
+
+// extend(Circle, Shape);
+
+// Circle.prototype.duplicate = function() {
+//     console.log('duplicate circle');
+// }
+
+// function Square() {
+// }
+
+// extend(Square, Shape);
+  
+// Square.prototype.duplicate = function() {
+//     console.log('duplicate square');
+// }
+
+// const Shapes = [
+//     new Circle(),
+//     new Square()
+// ];
+
+// for (let Shape of shape) {
+//     shape.duplicate();
+// }
+
+//7.when to use inheritance
+ //kita menggunakan inheritance apabila dalam satu objek memiliki berbagai properti
+ //dan properti tersebut masing masing memiliki perlakuan/metode
+//
+
+// //8. mixins
+
+// function mixin(target, ...sources) {
+//     Object.assign(target, ...sources)
+// }
+
+// const canEat = {
+//     eat: function() {
+//         this.hunger--;
+//         console.log('eating')
+//     }
+// };
+
+// const canWalk = {
+//     walk: function() {
+//         console.log('walking');
+//     }
+// }
+
+// const canSwim  = {
+//     swim: function() {
+//         console.log('swimming')
+//     }
+// };
+
+// function Person(){
+// }
+
+// mixin(Person.prototype, canEat, canWalk);
+
+// const person  = new Person();
+// console.log(person)
+
+// function Goldfish(){
+// }
+
+// mixin(Goldfish.prototype, canEat, canSwim)
+// const fish = new Goldfish
+// console.log(fish)
+
+//11. solution prototypical inheritance
+
+// function HtmlElement() {
+//     this.click = function()  {
+//         console.log('clicked')
+//     }
+// }
+
+// HtmlElement.prototype.focus = function(){
+//     console.log('focused')
+// }
+
+// function HtmlSelectElement(items = []) {
+//     this.items = items;
+
+//     this. addItem = function(item){
+//         this.items.push(item);
+//     }
+
+//     this.removeItem = function(item) {
+//         this.items.splice(this.items.indexOf(item), 1);
+//     }
+// }
+// // //menjadi base htmlselect element
+// // HtmlSelectElement.prototype = Object.create(HtmlElement.prototype); //menjadi base htmlelement
+
+// HtmlSelectElement.prototype = new HtmlElement()
+// HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+//12. solution polymorphism
+// function HtmlSelectElement (items = []) {
+//     this.items = items;
+
+//     this.addItem = function(item) {
+//         this.items.push(item);
+//     }
+
+//     this.removeItem = function(item) {
+//         this.items.splice(this.items.indexOf(item), 1);
+//     }
+    
+//     this.render = function() {
+//         return `
+//     <select>${this.items.map(item => `
+//         <option>${item}</option`).join('')}
+//     </select>`;
+//     }
+// }
+
+// // const renderItem = function (item) {
+// //     return `<option>${item}</option>`
+// // } bisa juga
+
+// // const renderItem = item => `<option>${item}</option>`
+
+// HtmlSelectElement.prototype = new HtmlElement();
+// HtmlSelectElement.prototype.constructor = HtmlSelectElement 
+
+
+// function htmlImageElement (src) {
+//     this.src = src;
+//     this.render = function () {
+//         return `<img src="${this.src}"/>`
+//     }
+// }
+// htmlImageElement.prototype = new HtmlElement();
+// htmlImageElement.prototype.constructor = htmlImageElement
+
+
+//es6 
+//1-es6 classes
+
+// function Circle(radius) {
+//     this.radius = radius;
+//     this.move = function () {}
+
+//     this.draw = function() {
+//         console.log('draw');
+//     }
+// }
+//klo es6
+
+// class Circle {
+//     constructor(radius) {
+//         this.radius = radius
+//         this.move =  function() {}
+//     }
+
+//     draw() {
+//         console.log('draw')
+//     }
+// }
+
+// const c = new Circle(1); //kalau mau dipanggil
+
+//2. hoisting
+// sayHello();
+
+// //function declaration
+// function sayHello () {}
+
+// //function expression
+// const sayGoodbye = function () {};
+// const number = 1;
+
+// //es6
+// //class declaration
+// class = circle{
+// };
+
+// //class expresiion
+// const square = class {
+// };
+
+//3. static methods
+
+// class Circle {
+//     constructor(radius) {
+//         this.radius = radius
+//     }
+// //instance method
+//     draw() {
+//     }
+// //static method
+//     static parse(str) {
+//         const radius = JSON.parse(str).radius;
+//         return new Circle(radius);
+//     }
+// }
+
+// const circle = Circle.parse('{"radius": 1}')
+// console.log(circle)
+
+//4. the this keyword
+
+// 'use strict'
+
+// const Circle = function() {
+//     this.draw = function() {console.log(this);}
+// };
+
+// const c = new Circle();
+// c.draw();
+
+// const draw = c.draw
+
+// draw()
+
+//es6
+// 'use strict'
+// class Circle {
+//     draw() {
+//         console.log(this);
+//     }
+// }
+
+// const c = new Circle(1)
+// const draw = c.draw;
+// draw();
+
+// // 5. private members using symbols
+
+// const _radius = Symbol();
+// const _draw = Symbol();
+
+// class Circle {
+//     constructor(radius) {
+//         this[_radius] = radius;
+//     }
+//     [_draw]() {
+//     }
+// }
+
+// const c = new Circle(1);
+// const key = Object.getOwnPropertySymbols(c)[0];
+// console.log(c[key]); //nilai symbol
+
+//6. private members using weakMaps
+// const _radius = new WeakMap();
+// const _move = new WeakMap();
+
+
+// class Circle {
+//     constructor(radius) {
+//         _radius.set(this, radius);
+        
+//         _move.set(this, () => {
+//             console.log('move', this);
+//         })
+//     }
+
+//     draw() {
+//         _move.get(this) ();
+//         console.log('draw')
+//     }
+// }
+
+// const c = new Circle(1)
+
+//7.getters and setters
+
+// const _radius = new WeakMap();
+
+// class Circle {
+//     constructor(radius) {
+//         _radius.set(this, radius);
+//     }
+//     //get dan set di es6
+//     get radius() {
+//         return _radius.get(this);
+//     }
+
+//     set radius(value) {
+//         if (value <= 0) throw new Error ('invalid radius')
+//         _radius.set(this, value)
+//     }
+// }
+
+// const c = new Circle(1)
+
+// 8. inheritance
+
+// class Shape {
+//     constructor(color) {
+//         this.color = color;
+//     }
+
+//     move() {
+//         console.log('move');
+//     }
+// }
+
+// class Circle extends Shape {
+//     constructor(color, radius) {
+//         super(color); //super digunakan karena parent pake constructor, biar ga eror
+//         this.radius = radius;
+//     }
+    
+
+//     draw() {
+//         console.log('draw')
+//     }
+// }
+
+// const c = new Circle('red', 1);
+
+//9. method overriding
+
+// class Shape {
+//     move(){
+//         console.log('move');
+//     }
+// }
+
+// class Circle extends Shape {
+//     move() {
+//         super.move(); //pake super biar kepangil yg diparent dan child
+//         console.log('circle move')
+//     }
+// }
+
+// const c = new Circle()
