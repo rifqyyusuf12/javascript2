@@ -728,3 +728,26 @@
 // import {Circle} from './circle2.js'
 // const c = new Circle(10);
 // c.draw();
+
+//beginner automatic step by step
+//1 beginner 
+
+
+// class Employee {
+    
+//     constructor(name,id){
+//         this.name = name
+//         this.id = id
+//     }
+// }
+
+// const emp1 = new Employee ('rifqy', 1999)
+// const emp2 = new Employee ('tifa', 1998)
+
+// console.log (emp1.name);
+// console.log (emp1. id)
+
+// console.log (emp2.name);
+// console.log (emp2. id)
+
+// 2. oopencapsulation
