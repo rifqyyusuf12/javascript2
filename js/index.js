@@ -713,19 +713,18 @@
 
 // const c = new Circle()
 
-//1 modules es6
+//1 modules es6 & 2.commonJS modules
 
-const _radius = new WeakMap ()
 
-class Circle{
-    constructor(radius) {
-        _radius.set(this, radius);
-    }
+// const Circle = require('./circle')
 
-    draw() {
-        console.log('Circle with radius' + _radius.get(this));
-    }
-}
+// const c = new Circle(10)
+// c.draw();
 
-const c = new Circle(10)
-c.draw();
+//menyambungkan antara file index.js induk dengan circle js anak
+
+//3.es6 modules
+
+// import {Circle} from './circle2.js'
+// const c = new Circle(10);
+// c.draw();
