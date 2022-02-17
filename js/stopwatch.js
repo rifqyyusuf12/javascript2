@@ -1,4 +1,4 @@
-// //membuat stopwatch
+// // //membuat stopwatch
 
 // function Stopwatch() {
 //   let startTime,
@@ -16,7 +16,7 @@
 //     if (!running) throw new Error("Stopwatch berhenti");
 //     runnning = false;
 //     endTime = new Date();
-//     const seconds = endTime - startTime / 1000;
+//     const seconds = (endTime - startTime) / 1000;
 //     duration += seconds;
 //   };
 
@@ -33,4 +33,3 @@
 //     },
 //   });
 // }
-// const sw = new Stopwatch();
