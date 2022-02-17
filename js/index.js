@@ -715,6 +715,7 @@
 
 //1 modules es6 & 2.commonJS modules
 
+//cohesion
 
 // const Circle = require('./circle')
 
@@ -725,9 +726,9 @@
 
 //3.es6 modules
 
-// import {Circle} from './circle2.js'
-// const c = new Circle(10);
-// c.draw();
+import {Circle} from './circle2.js'
+const c = new Circle(10);
+c.draw();
 
 //beginner automatic step by step
 //1 beginner 
